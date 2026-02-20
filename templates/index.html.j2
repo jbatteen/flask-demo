@@ -2,9 +2,6 @@
 <html>
 <head>
     <script>
-        function init() {
-            top_bar_init();
-        }
         function call_flask() {
           let data = new FormData();
           data.append("flask_data", document.getElementById("flask_data").value);
@@ -24,7 +21,7 @@
         }
     </script>
 </head>
-<body onload="init();">
+<body>
     <div style="grid-template-columns: 20ch max-content;">
         <input type="text" id="flask_data">
         <button onclick="call_flask()">Call Flask</button>
