@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+        function init() {
+            top_bar_init();
+        }
+        function call_flask() {
+          let data = new FormData();
+          data.append("flask_data", document.getElementById("flask_data").value);
+          fetch("{{ url_for('index') }}", {"method": "POST", "body": data})
+              .then(res => res.json())
+              .then(data => {reply = data;})
+              .then(() => {
+                  if (reply.success) {
+                      alert("It worked!");
+                  } else {
+                      alert(reply.error);
+                  }
+              })
+              .catch((error) => {
+                  alert(error);
+              })
+        }
+    </script>
+</head>
+<body onload="init();">
+    <div style="grid-template-columns: 20ch max-content;">
+        <input type="text" id="flask_data">
+        <button onclick="call_flask()">Call Flask</button>
+    </div>
+</body>
+</html>
